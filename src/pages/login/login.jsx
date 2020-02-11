@@ -1,9 +1,34 @@
 import React, { Component } from 'react'
-import { Form, Icon, Input, Button, Checkbox } from 'antd';
+import { Form, Icon, Input, Button } from 'antd';
 import './css/login.less'
 import Logo from './img/logo.png'
 
  class Login extends Component {
+     //密码校验器(自定义)
+    passwordValidator=(rule, value, callback)=>{
+        if(!value){
+            callback('密码必须输入')
+        }else if(value.length > 12){
+            callback('密码必须小于12位')
+        }else if(value.length < 4){
+            callback('密码必须大于4位')
+        }else if(!(/^\w+$/).test(value)){
+            callback('用户名必须必须是英文、数字或下划线组成')
+        }else{
+            callback()
+        }
+    }
+    //响应表单提交
+    handleSubmit = e => {
+        e.preventDefault();
+        //此处获取表单用户输入values{username:'',password:''}
+        this.props.form.validateFields((err, values) => {
+          if (!err) {
+            console.log('发送请求: ', values);
+          }
+        });
+      };
+
     render() {
         const { getFieldDecorator } = this.props.form;
         const {Item}  = Form
@@ -34,10 +59,12 @@ import Logo from './img/logo.png'
                         <Item>
                             {getFieldDecorator('password', {
                                     rules: [
-                                        {required:true,message:'密码必须输入' },
-                                        {max:12,message: '密码必须小于12位'},
-                                        {min:4,message: '密码必须大于4位'},
-                                        {pattern:/^\w+$/,message: '密码必须必须是英文、数字或下划线组成'}
+                                        //声明式
+                                        // {required:true,message:'密码必须输入' },
+                                        // {max:12,message: '密码必须小于12位'},
+                                        // {min:4,message: '密码必须大于4位'},
+                                        // {pattern:/^\w+$/,message: '密码必须必须是英文、数字或下划线组成'}
+                                        {validator:this.passwordValidator}
                                     ],
                                 })(
                                     <Input
