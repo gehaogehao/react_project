@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import { Form, Icon, Input, Button } from 'antd';
+import axios from 'axios'
 import './css/login.less'
 import Logo from './img/logo.png'
 
@@ -24,7 +25,11 @@ import Logo from './img/logo.png'
         //此处获取表单用户输入values{username:'',password:''}
         this.props.form.validateFields((err, values) => {
           if (!err) {
-            console.log('发送请求: ', values);
+            const {username,password} = values
+            axios.post('http://localhost:3000/login',`username=${username}&password=${password}`).then(
+               (response) => {console.log(response.data)},
+               (error) => {console.log(error)}
+            )
           }
         });
       };
@@ -85,4 +90,4 @@ import Logo from './img/logo.png'
         )
     }
 }
-export default Form.create({ name: 'login' })(Login);
+export default Form.create()(Login);
