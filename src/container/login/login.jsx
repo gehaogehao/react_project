@@ -33,8 +33,8 @@ import {Redirect} from 'react-router-dom'
             const {status,data,msg} = result
             if(status === 0){
                 message.success('登录成功!')
-                const {user,token} = data
-                this.props.saveUserInOf({user,token})
+                //const {user,token} = data
+                this.props.saveUserInOf(data)
                 this.props.history.replace('/admin')
             }else{
                 message.warning(msg)
