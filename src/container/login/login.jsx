@@ -5,8 +5,14 @@ import './css/login.less'
 import Logo from './img/logo.png'
 import {connect} from 'react-redux'
 import {createSaveUserInfoAction} from '../../redux/action/login'
-import {Redirect} from 'react-router-dom'
+import check from '../check/check'
 
+@connect(
+    (state)=>({userInfo:state.userInfo}),
+    {saveUserInOf:createSaveUserInfoAction}
+)
+@Form.create()
+@check
  class Login extends Component {
      //密码校验器(自定义)
     passwordValidator=(rule, value, callback)=>{
@@ -46,8 +52,6 @@ import {Redirect} from 'react-router-dom'
     render() {
         const { getFieldDecorator } = this.props.form;
         const {Item}  = Form
-        const {isLogin} = this.props.userInfo
-        if(isLogin) return <Redirect to='/admin'/>
         return (
             <div id='login'>
                 <div className='header'>
@@ -101,9 +105,9 @@ import {Redirect} from 'react-router-dom'
         )
     }
 }
+export default Login
 
-
-export default connect(
-    (state)=>({userInfo:state.userInfo}),
-    {saveUserInOf:createSaveUserInfoAction}
-)(Form.create()(Login))
+// export default connect(
+//     (state)=>({userInfo:state.userInfo}),
+//     {saveUserInOf:createSaveUserInfoAction}
+// )(Form.create()(Login))

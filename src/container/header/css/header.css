@@ -1,0 +1,50 @@
+.header {
+  height: 80px;
+  background-color: white;
+}
+.header .header-top {
+  height: 40px;
+  line-height: 40px;
+  border-bottom: 1px solid green;
+  text-align: right;
+}
+.header .header-top .btn {
+  margin-right: 10px;
+}
+.header .header-bottom {
+  display: flex;
+  height: 40px;
+}
+.header .header-bottom .bottom-left {
+  position: relative;
+  line-height: 40px;
+  font-size: 20px;
+  width: 25%;
+  text-align: center;
+}
+.header .header-bottom .bottom-left::after {
+  content: '';
+  position: absolute;
+  left: 50%;
+  top: 40px;
+  transform: translateX(-50%);
+  width: 40px;
+  height: 40px;
+  border-left: 20px solid transparent;
+  border-right: 20px solid transparent;
+  border-top: 20px solid white;
+  border-bottom: 20px solid transparent;
+}
+.header .header-bottom .bottom-right {
+  line-height: 40px;
+  width: 75%;
+  text-align: right;
+}
+.header .header-bottom .bottom-right img {
+  width: 30px;
+  height: 30px;
+  margin: 0 10px;
+}
+.header .header-bottom .bottom-right .weather {
+  padding-right: 20px;
+}
