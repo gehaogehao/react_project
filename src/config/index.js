@@ -4,3 +4,4 @@ export const BASE_URL = ''
 export const WEATHER_URL = 'http://api.map.baidu.com/telematics/v3/weather'
 //天气预报请求密钥
 export const AK_URL = '3p49MVra6urFRGOT9s8UBWr2'
+export const PAGE_SIZE = 5

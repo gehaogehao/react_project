@@ -1,3 +1,10 @@
 .Layout {
   height: 100%;
 }
+.Layout .Content {
+  background-color: white;
+  margin: 20px 20px 0 20px;
+}
+.Layout .Footer {
+  text-align: center;
+}
